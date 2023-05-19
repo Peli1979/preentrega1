@@ -35,8 +35,14 @@ class CartManager {
 
   async getCartById(id) {
     await this.loadCarts();
-    return this.carts.find((cart) => cart.id === id);
+    const encontrado = this.carts.find((cart) => cart.id == id);
+    if (encontrado) {
+      return encontrado;
+    } else {
+      console.error("Product not found");
+    }
   }
+  
 
   async addCart() {
     await this.loadCarts();
@@ -48,6 +54,8 @@ class CartManager {
     await this.saveCarts();
     return newCart;
   }
+
+  
 
   async updateCart(id, newData) {
     await this.loadCarts();
