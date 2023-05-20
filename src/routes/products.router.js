@@ -1,5 +1,5 @@
 import express from "express";
-//import { products } from "../utils.js";
+import { uploader } from "../utils.js";
 import  ProductManager  from '../productmanager.js';
 const alfombra = new ProductManager('./products.json');
 
@@ -47,8 +47,17 @@ routerProducts.put("/:pid", async (req, res) => {
     });
   });
 
-routerProducts.post("/", async (req, res) => {
+routerProducts.post("/", uploader.single("thumbnail"),async (req, res) => {
+  if (!req.file) {
+    res.status(400).send({
+      status: "error",
+      msg: "error no enviaste una foto o no se puedo subir la misma",
+      data: {},
+    });
+  }
+
     const product = req.body;
+    product.thumbnail = "http://localhost:8080/" + req.file.filename;
     await alfombra.addProduct(product);
     res.status(201).json({
     status: "success",

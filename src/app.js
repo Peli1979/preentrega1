@@ -4,7 +4,7 @@ import express from "express";
 import { routerCarts } from "./routes/carts.router.js";
 import { routerProducts } from "./routes/products.router.js";
 //import { routerVistaProductos } from "./routes/productos.vista.router.js";
-//import { __dirname } from "./utils.js";
+import { __dirname } from "./utils.js";
 const app = express();
 const port = 8080;
 
@@ -17,7 +17,7 @@ app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");*/
 
 //archivos publicos
-//app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/public"));
 //ENDPOINT TIPO API CON DATOS CRUDOS EN JSON
 app.use("/api/products", routerProducts);
 app.use("/api/carts", routerCarts);
