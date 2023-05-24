@@ -1,19 +1,35 @@
-<div>
-
+<div class="container">
   <h3>Listado de productos:</h3>
-  <div id="div-msgs" style="border: 1px solid red;margin-bottom: 20px;"></div>
+  <div id="div-msgs" class="product-list"></div>
 
   <form id="product-form">
-    <input id="input-msg1" type="text" value="" placeholder="Ingrese nombre" />
-    <input id="input-msg2" type="text" value="" placeholder="Ingrese descripcion" />
-    <input id="input-msg3" type="text" value="" placeholder="Ingrese categoria" />
-    <input id="input-msg4" type="text" value="" placeholder="Ingrese estado" />
-    <input id="input-msg5" type="text" value="" placeholder="Ingrese precio" />
-    <input id="input-msg6" type="text" value="" placeholder="Ingrese thumbnail" />
-    <input id="input-msg7" type="text" value="" placeholder="Ingrese codigo" />
-    <input id="input-msg8" type="text" value="" placeholder="Ingrese stock" />
-    <button onclick="agregarProducto()">Agregar</button>
+    <div class="form-group">
+      <input id="input-msg1" class="form-control" type="text" value="" placeholder="Ingrese nombre" />
+    </div>
+    <div class="form-group">
+      <input id="input-msg2" class="form-control" type="text" value="" placeholder="Ingrese descripción" />
+    </div>
+    <div class="form-group">
+      <input id="input-msg3" class="form-control" type="text" value="" placeholder="Ingrese categoría" />
+    </div>
+    <div class="form-group">
+      <input id="input-msg4" class="form-control" type="text" value="" placeholder="Ingrese estado" />
+    </div>
+    <div class="form-group">
+      <input id="input-msg5" class="form-control" type="text" value="" placeholder="Ingrese precio" />
+    </div>
+    <div class="form-group">
+      <input id="input-msg6" class="form-control" type="text" value="" placeholder="Ingrese thumbnail" />
+    </div>
+    <div class="form-group">
+      <input id="input-msg7" class="form-control" type="text" value="" placeholder="Ingrese código" />
+    </div>
+    <div class="form-group">
+      <input id="input-msg8" class="form-control" type="text" value="" placeholder="Ingrese stock" />
+    </div>
+    <button onclick="agregarProducto()" class="btn btn-primary">Agregar</button>
   </form>
+</div>
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -22,11 +38,11 @@
 
 <script id="product-template" type="text/template">
   <div class="product-item">
-    <p>Producto: {{title}}</p>
-    <p>Id: {{id}}</p>
-    <p>Precio: ${{price}}</p>
-    <p>Stock: {{stock}}</p>
-    <button class="delete-button" data-product-id="{{id}}">Eliminar</button>
+    <p><strong>Producto:</strong> {{title}}</p>
+    <p><strong>Id:</strong> {{id}}</p>
+    <p><strong>Precio:</strong> ${{price}}</p>
+    <p><strong>Stock:</strong> {{stock}}</p>
+    <button class="delete-button btn btn-danger" data-product-id="{{id}}">Eliminar</button>
     <hr />
   </div>
 </script>

@@ -1,34 +1,5 @@
 const socket = io();
 
-
-
-const title = document.getElementById("input-msg1");
-const description = document.getElementById("input-msg2");
-const category = document.getElementById("input-msg3");
-const estatus = document.getElementById("input-msg4");
-const price = document.getElementById("input-msg5");
-const thumbnail = document.getElementById("input-msg6");
-const code = document.getElementById("input-msg7");
-const stock = document.getElementById("input-msg8");
-
-stock.addEventListener("keyup", ({ key }) => {
-  //alert("toco " + key);
-  if (key == "Enter") {
-    socket.emit("msg_front_to_back", {
-      title: title.value,
-      description: description.value,
-      category: category.value,
-      status: estatus.value,
-      price: price.value,
-      thumbnail: thumbnail.value,
-      code: code.value,
-      stock: stock.value,
-      
-    });
-    
-  }
-});
-
 // Manejador para recibir la lista de productos
 socket.on('todos_los_msgs', (productos) => {
   const divMsgs = document.getElementById('div-msgs');
