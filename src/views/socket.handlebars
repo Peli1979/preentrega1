@@ -1,0 +1,32 @@
+<div>
+
+  <h3>Listado de productos:</h3>
+  <div id="div-msgs" style="border: 1px solid red;margin-bottom: 20px;"></div>
+
+  <form id="product-form">
+    <input id="input-msg1" type="text" value="" placeholder="Ingrese nombre" />
+    <input id="input-msg2" type="text" value="" placeholder="Ingrese descripcion" />
+    <input id="input-msg3" type="text" value="" placeholder="Ingrese categoria" />
+    <input id="input-msg4" type="text" value="" placeholder="Ingrese estado" />
+    <input id="input-msg5" type="text" value="" placeholder="Ingrese precio" />
+    <input id="input-msg6" type="text" value="" placeholder="Ingrese thumbnail" />
+    <input id="input-msg7" type="text" value="" placeholder="Ingrese codigo" />
+    <input id="input-msg8" type="text" value="" placeholder="Ingrese stock" />
+    <button onclick="agregarProducto()">Agregar</button>
+  </form>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="/js/socket.js"></script>
+</div>
+
+<script id="product-template" type="text/template">
+  <div class="product-item">
+    <p>Producto: {{title}}</p>
+    <p>Id: {{id}}</p>
+    <p>Precio: ${{price}}</p>
+    <p>Stock: {{stock}}</p>
+    <button class="delete-button" data-product-id="{{id}}">Eliminar</button>
+    <hr />
+  </div>
+</script>

@@ -1,4 +1,9 @@
-
+export let productos = [
+  { id: "1000000", name: "pelota boca", precio: 100 },
+  { id: "1000001", name: "pelota river", precio: -10 },
+  { id: "1000002", name: "pelota tigre", precio: 5 },
+  { id: "1000004", name: "pelota manchester", precio: 100 },
+];
   
   import path from "path";
   import { fileURLToPath } from "url";
