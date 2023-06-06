@@ -7,10 +7,13 @@ import { routerVistaProducts } from "./routes/products.vista.router.js";
 import { routerRealTimeProducts } from "./routes/socket.vista.router.js";
 import  ProductManager  from './productmanager.js';
 const alfombra = new ProductManager('./products.json');
-import { __dirname } from "./utils.js";
+import { __dirname, connectMongo } from "./utils.js";
 import { Server } from "socket.io";
 const app = express();
 const port = 8080;
+
+//mongodb+srv://martinrozada:5UEe26MLj7iarOtY@martin-cluster.acwuf3p.mongodb.net/?retryWrites=true&w=majority
+connectMongo();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -25,6 +28,8 @@ app.use(express.static(__dirname + "/public"));
 //ENDPOINT TIPO API CON DATOS CRUDOS EN JSON
 app.use("/api/products", routerProducts);
 app.use("/api/carts", routerCarts);
+
+
 
 //HTML REAL TIPO VISTA
 app.use("/vista/productos", routerVistaProducts);
