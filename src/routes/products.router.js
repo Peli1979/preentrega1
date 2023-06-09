@@ -1,5 +1,5 @@
 import express from "express";
-import { uploader } from "../utils.js";
+import { uploader } from "../utils/multer.js";
 import  ProductManager  from '../productmanager.js';
 const alfombra = new ProductManager('./products.json');
 

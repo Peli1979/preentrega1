@@ -7,7 +7,9 @@ import { routerVistaProducts } from "./routes/products.vista.router.js";
 import { routerRealTimeProducts } from "./routes/socket.vista.router.js";
 import  ProductManager  from './productmanager.js';
 const alfombra = new ProductManager('./products.json');
-import { __dirname, connectMongo } from "./utils.js";
+import { __dirname} from "./path.js";
+import {connectMongo} from "./utils/connections.js"
+import { routerUsers } from "./routes/users.router.js";
 import { Server } from "socket.io";
 const app = express();
 const port = 8080;
@@ -28,6 +30,7 @@ app.use(express.static(__dirname + "/public"));
 //ENDPOINT TIPO API CON DATOS CRUDOS EN JSON
 app.use("/api/products", routerProducts);
 app.use("/api/carts", routerCarts);
+app.use('/api/users', routerUsers);
 
 
 

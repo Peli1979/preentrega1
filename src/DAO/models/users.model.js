@@ -9,3 +9,4 @@ export const UserModel = model(
     email: { type: String, required: true, max: 100 },
   })
 );
+
