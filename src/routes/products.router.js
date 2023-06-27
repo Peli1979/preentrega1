@@ -1,9 +1,91 @@
 import express from "express";
 import { uploader } from "../utils/multer.js";
-import  ProductManager  from '../productmanager.js';
-const alfombra = new ProductManager('./products.json');
 
+import { productService } from '../services/products.service.js';
 export const routerProducts = express.Router();
+
+routerProducts.get('/', async (req, res) => {
+  try {
+    const products = await productService.getAllProducts();
+    return res.status(200).json({
+      status: 'success',
+      msg: 'product list',
+      data: products,
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      status: 'error',
+      msg: 'something went wrong :(',
+      data: {},
+    });
+  }
+});
+
+routerProducts.post('/',uploader.single("thumbnail"), async (req, res) => {
+  try {
+    const { name, description, price, stock, thumbnails, status, code, category } = req.body;
+    const productCreated = await productService.createProduct(name, description, price, stock, thumbnails, status, code, category);
+
+    return res.status(201).json({
+      status: 'success',
+      msg: 'product created',
+      data: productCreated,
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      status: 'error',
+      msg: 'something went wrong :(',
+      data: {},
+    });
+  }
+});
+
+routerProducts.put('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, description, price, stock, thumbnails, status, code, category } = req.body;
+
+    const productUpdated = await productService.updateProduct(id, name, description, price, stock, thumbnails, status, code, category);
+    return res.status(201).json({
+      status: 'success',
+      msg: 'product updated',
+      data: productUpdated,
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      status: 'error',
+      msg: 'something went wrong :(',
+      data: {},
+    });
+  }
+});
+
+routerProducts.delete('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleted = await productService.deleteProduct(id);
+    return res.status(200).json({
+      status: 'success',
+      msg: 'product deleted',
+      data: {},
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      status: 'error',
+      msg: 'something went wrong :(',
+      data: {},
+    });
+  }
+});
+
+//import  ProductManager  from '../productmanager.js';
+//const alfombra = new ProductManager('./products.json');
+
+/*export const routerProducts = express.Router();
 routerProducts.get("/", async (req, res) => {
     const limit = req.query.limit;
     const products = await alfombra.getProducts();
@@ -64,4 +146,4 @@ routerProducts.post("/", uploader.single("thumbnail"),async (req, res) => {
     msg: "creamos el producto que pediste",
     data: product,
   });
-});
+});*/

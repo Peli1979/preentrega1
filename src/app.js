@@ -5,7 +5,7 @@ import { routerCarts } from "./routes/carts.router.js";
 import { routerProducts } from "./routes/products.router.js";
 import { routerVistaProducts } from "./routes/products.vista.router.js";
 import { routerRealTimeProducts } from "./routes/socket.vista.router.js";
-import  ProductManager  from './productmanager.js';
+import  ProductManager  from './DAO/productmanager.js';
 const alfombra = new ProductManager('./products.json');
 import { __dirname} from "./path.js";
 import {connectMongo} from "./utils/connections.js"
