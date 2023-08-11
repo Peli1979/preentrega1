@@ -11,6 +11,8 @@ import { __dirname} from "./path.js";
 import {connectMongo} from "./utils/connections.js"
 import { routerUsers } from "./routes/users.router.js";
 import { Server } from "socket.io";
+import cookieParser from "cookie-parser";
+import session from "express-session";
 const app = express();
 const port = 8080;
 
@@ -19,6 +21,8 @@ connectMongo();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser('coder-secret'));
+
 
 //CONFIGURACION DEL MOTOR DE HANDLEBARS
 app.engine("handlebars", handlebars.engine());
